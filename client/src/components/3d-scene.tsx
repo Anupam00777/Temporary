@@ -1,14 +1,32 @@
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls, useGLTF, Float } from "@react-three/drei";
-import { Suspense } from "react";
+import { OrbitControls, Float } from "@react-three/drei";
+import { Suspense, useEffect, useState } from "react";
+import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader.js";
+import { MTLLoader } from "three/examples/jsm/loaders/MTLLoader.js";
+import * as THREE from "three";
 
 function Model() {
-  const { scene } = useGLTF("/models/ImageToStl.com_Controller.glb");
+  const [model, setModel] = useState<THREE.Group | null>(null);
+
+  useEffect(() => {
+    const mtlLoader = new MTLLoader();
+    const objLoader = new OBJLoader();
+
+    mtlLoader.load("/models/Controller.mtl", (materials) => {
+      materials.preload();
+      objLoader.setMaterials(materials);
+      objLoader.load("/models/Controller.obj", (object: THREE.Group) => {
+        setModel(object);
+      });
+    });
+  }, []);
+
+  if (!model) return null;
 
   return (
     <Float speed={1.5} rotationIntensity={0.5} floatIntensity={0.5}>
       <primitive
-        object={scene}
+        object={model}
         scale={0.3}
         position={[0, 0, 0]}
         rotation={[0, Math.PI / 4, 0]}
@@ -25,18 +43,18 @@ function GamingScene() {
         style={{ background: "transparent" }}
       >
         <Suspense fallback={null}>
-          <ambientLight intensity={2.5} />
-          <directionalLight position={[5, 5, 5]} intensity={1.5} />
-          <directionalLight position={[-5, 5, -5]} intensity={1} />
+          <ambientLight intensity={0.8} />
+          <directionalLight position={[5, 5, 5]} intensity={0.6} />
+          <directionalLight position={[-5, 5, -5]} intensity={0.4} />
           <spotLight
             position={[3, 4, 2]}
             angle={0.2}
             penumbra={0.5}
-            intensity={4}
+            intensity={1.5}
             castShadow
           />
-          <pointLight position={[4, 3, 1]} intensity={3} />
-          <pointLight position={[-4, 3, -1]} intensity={2} />
+          <pointLight position={[4, 3, 1]} intensity={1} />
+          <pointLight position={[-4, 3, -1]} intensity={0.8} />
           <Model />
           <OrbitControls
             enableZoom={false}
