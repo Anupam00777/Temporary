@@ -29,7 +29,7 @@ function Model() {
     <Float speed={1.5} rotationIntensity={0.5} floatIntensity={0.5}>
       <primitive
         object={model}
-        scale={isMobile ? 0.2 : 0.3}
+        scale={isMobile ? 0.17 : 0.25}
         position={[0, 0, 0]}
         rotation={[0, Math.PI / 4, 0]}
       />
