@@ -4,6 +4,7 @@ import GamesShowcase from "@/components/games-showcase";
 import BookingSection from "@/components/booking-section";
 import ContactSection from "@/components/contact-section";
 import Footer from "@/components/footer";
+import FloatingButtons from "@/components/floating-buttons";
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
       <BookingSection />
       <ContactSection />
       <Footer />
+      <FloatingButtons />
     </div>
   );
 }
