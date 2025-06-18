@@ -1,51 +1,56 @@
-import { Calendar, Play } from "lucide-react";
+import { MessageCircle, ArrowDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export default function HeroSection() {
-  const scrollToBooking = () => {
-    const element = document.querySelector("#booking");
+  const scrollToContact = () => {
+    const element = document.querySelector("#contact");
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
     }
   };
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section
+      id="home"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+    >
       {/* Background */}
       <div className="absolute inset-0 hero-bg">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-neon-cyan/10 via-transparent to-transparent" />
         <img
           src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1920&h=1080"
           alt="Modern gaming cafe setup"
-          className="w-full h-full object-cover opacity-30"
+          className="w-full h-full object-cover opacity-20"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/60" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-black/80" />
+
+        {/* Animated Grid Overlay */}
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(0,245,255,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(0,245,255,0.1)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
       </div>
 
       {/* Content */}
-      <div className="relative z-10 text-center px-6 max-w-6xl mx-auto">
-        <h1 className="text-6xl md:text-8xl font-bold mb-6 leading-tight">
-          <span className="text-neon-cyan neon-glow animate-glow block">REBOOT</span>
-          <span className="text-neon-pink neon-glow block">GAMING</span>
-        </h1>
-        <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">
-          Experience next-level gaming at Nagpur's most advanced gaming cafe. Premium setups,
-          lightning-fast connections, and the ultimate gaming atmosphere.
-        </p>
-        <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-          <Button
-            onClick={scrollToBooking}
-            className="bg-gradient-to-r from-neon-cyan to-neon-pink text-black px-8 py-4 rounded-lg font-bold text-lg hover-neon transform transition-all duration-300 uppercase tracking-wider"
-          >
-            <Calendar className="mr-2 h-5 w-5" />
-            Book Your Slot
-          </Button>
-          <Button
-            variant="outline"
-            className="border-2 border-neon-cyan text-neon-cyan px-8 py-4 rounded-lg font-bold text-lg hover:bg-neon-cyan hover:text-black transition-all duration-300 uppercase tracking-wider neon-border"
-          >
-            <Play className="mr-2 h-5 w-5" />
-            Watch Tour
-          </Button>
+      <div className="relative z-10 text-center px-4 md:px-6 max-w-6xl mx-auto">
+        <div className="animate-slide-up">
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight">
+            <span className="text-neon-cyan neon-glow animate-glow block">
+              REBOOT
+            </span>
+            <span className="text-neon-pink neon-glow block">GAMING</span>
+          </h1>
+          <p className="text-lg md:text-xl lg:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">
+            Experience next-level gaming at Nagpur's most advanced gaming cafe.
+            Premium setups, lightning-fast connections, and the ultimate gaming
+            atmosphere.
+          </p>
+          <div className="flex justify-center items-center">
+            <Button
+              onClick={scrollToContact}
+              className="gaming-button group px-8 md:px-10 py-4 md:py-5 text-lg md:text-xl"
+            >
+              <MessageCircle className="mr-2 h-6 w-6 group-hover:animate-bounce" />
+              Contact Us
+            </Button>
+          </div>
         </div>
       </div>
 
@@ -58,6 +63,11 @@ export default function HeroSection() {
       </div>
       <div className="absolute top-1/2 left-20 text-electric-green text-3xl animate-float opacity-20 animation-delay-2000">
         ⌨️
+      </div>
+
+      {/* Scroll Indicator */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+        <ArrowDown className="h-8 w-8 text-neon-cyan" />
       </div>
     </section>
   );

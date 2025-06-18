@@ -4,7 +4,13 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
@@ -23,7 +29,8 @@ export default function BookingSection() {
     onSuccess: () => {
       toast({
         title: "Booking Confirmed!",
-        description: "Your gaming slot has been reserved. You will receive a confirmation shortly.",
+        description:
+          "Your gaming slot has been reserved. You will receive a confirmation shortly.",
       });
       setFormData({});
       queryClient.invalidateQueries({ queryKey: ["/api/bookings"] });
@@ -31,7 +38,8 @@ export default function BookingSection() {
     onError: (error: any) => {
       toast({
         title: "Booking Failed",
-        description: error.message || "Failed to create booking. Please try again.",
+        description:
+          error.message || "Failed to create booking. Please try again.",
         variant: "destructive",
       });
     },
@@ -39,8 +47,15 @@ export default function BookingSection() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
-    if (!formData.name || !formData.phone || !formData.date || !formData.timeSlot || !formData.duration || !formData.gameType) {
+
+    if (
+      !formData.name ||
+      !formData.phone ||
+      !formData.date ||
+      !formData.timeSlot ||
+      !formData.duration ||
+      !formData.gameType
+    ) {
       toast({
         title: "Missing Information",
         description: "Please fill in all required fields.",
@@ -86,12 +101,18 @@ export default function BookingSection() {
   ];
 
   return (
-    <section id="booking" className="py-20 px-6 bg-gradient-to-br from-gray-900/50 to-black">
+    <section
+      id="booking"
+      className="py-20 px-6 bg-gradient-to-br from-gray-900/50 to-black"
+    >
       <div className="container mx-auto max-w-6xl">
         <div className="text-center mb-16">
-          <h2 className="text-5xl font-bold text-neon-pink neon-glow mb-6">BOOK YOUR SESSION</h2>
+          <h2 className="text-5xl font-bold text-neon-pink neon-glow mb-6">
+            BOOK YOUR SESSION
+          </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            Reserve your gaming slot in advance and guarantee your spot in gaming paradise.
+            Reserve your gaming slot in advance and guarantee your spot in
+            gaming paradise.
           </p>
         </div>
 
@@ -112,7 +133,9 @@ export default function BookingSection() {
                       type="text"
                       placeholder="Enter your name"
                       value={formData.name || ""}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      onChange={(e) =>
+                        setFormData({ ...formData, name: e.target.value })
+                      }
                       className="bg-gray-800/50 border-neon-cyan/30 text-white focus:border-neon-cyan"
                     />
                   </div>
@@ -122,7 +145,9 @@ export default function BookingSection() {
                       type="tel"
                       placeholder="+91 98765 43210"
                       value={formData.phone || ""}
-                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                      onChange={(e) =>
+                        setFormData({ ...formData, phone: e.target.value })
+                      }
                       className="bg-gray-800/50 border-neon-cyan/30 text-white focus:border-neon-cyan"
                     />
                   </div>
@@ -134,13 +159,19 @@ export default function BookingSection() {
                     <Input
                       type="date"
                       value={formData.date || ""}
-                      onChange={(e) => setFormData({ ...formData, date: e.target.value })}
+                      onChange={(e) =>
+                        setFormData({ ...formData, date: e.target.value })
+                      }
                       className="bg-gray-800/50 border-neon-cyan/30 text-white focus:border-neon-cyan"
                     />
                   </div>
                   <div>
                     <Label className="text-gray-300 mb-2">Game Type</Label>
-                    <Select onValueChange={(value) => setFormData({ ...formData, gameType: value })}>
+                    <Select
+                      onValueChange={(value) =>
+                        setFormData({ ...formData, gameType: value })
+                      }
+                    >
                       <SelectTrigger className="bg-gray-800/50 border-neon-cyan/30 text-white">
                         <SelectValue placeholder="Select Game Type" />
                       </SelectTrigger>
@@ -149,7 +180,9 @@ export default function BookingSection() {
                         <SelectItem value="aaa">AAA Titles</SelectItem>
                         <SelectItem value="vr">VR Zone</SelectItem>
                         <SelectItem value="console">Console Gaming</SelectItem>
-                        <SelectItem value="streaming">Streaming Setup</SelectItem>
+                        <SelectItem value="streaming">
+                          Streaming Setup
+                        </SelectItem>
                         <SelectItem value="party">Party Mode</SelectItem>
                       </SelectContent>
                     </Select>
@@ -159,7 +192,11 @@ export default function BookingSection() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <Label className="text-gray-300 mb-2">Duration</Label>
-                    <Select onValueChange={(value) => setFormData({ ...formData, duration: value })}>
+                    <Select
+                      onValueChange={(value) =>
+                        setFormData({ ...formData, duration: value })
+                      }
+                    >
                       <SelectTrigger className="bg-gray-800/50 border-neon-cyan/30 text-white">
                         <SelectValue placeholder="Select Duration" />
                       </SelectTrigger>
@@ -174,7 +211,11 @@ export default function BookingSection() {
                   </div>
                   <div>
                     <Label className="text-gray-300 mb-2">Time Slot</Label>
-                    <Select onValueChange={(value) => setFormData({ ...formData, timeSlot: value })}>
+                    <Select
+                      onValueChange={(value) =>
+                        setFormData({ ...formData, timeSlot: value })
+                      }
+                    >
                       <SelectTrigger className="bg-gray-800/50 border-neon-cyan/30 text-white">
                         <SelectValue placeholder="Select Time" />
                       </SelectTrigger>
@@ -218,8 +259,12 @@ export default function BookingSection() {
                       className={`flex justify-between items-center p-4 bg-gray-800/50 rounded-lg border ${plan.borderColor}`}
                     >
                       <div>
-                        <h4 className="font-semibold text-white">{plan.title}</h4>
-                        <p className="text-sm text-gray-400">{plan.description}</p>
+                        <h4 className="font-semibold text-white">
+                          {plan.title}
+                        </h4>
+                        <p className="text-sm text-gray-400">
+                          {plan.description}
+                        </p>
                       </div>
                       <span className={`text-2xl font-bold ${plan.textColor}`}>
                         {plan.price}
