@@ -1,5 +1,6 @@
 import { MessageCircle, ArrowDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import GamingScene from "./3d-scene";
 
 export default function HeroSection() {
   const scrollToContact = () => {
@@ -12,24 +13,24 @@ export default function HeroSection() {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden"
     >
       {/* Background */}
       <div className="absolute inset-0 hero-bg">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-neon-cyan/10 via-transparent to-transparent" />
-        <img
-          src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1920&h=1080"
-          alt="Modern gaming cafe setup"
-          className="w-full h-full object-cover opacity-20"
-        />
         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-black/80" />
 
         {/* Animated Grid Overlay */}
         <div className="absolute inset-0 bg-[linear-gradient(rgba(0,245,255,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(0,245,255,0.1)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
       </div>
 
+      {/* 3D Scene */}
+      <div className="w-full">
+        <GamingScene />
+      </div>
+
       {/* Content */}
-      <div className="relative z-10 text-center px-4 md:px-6 max-w-6xl mx-auto">
+      <div className="relative text-center px-4 md:px-6 max-w-6xl mx-auto -mt-20">
         <div className="animate-slide-up">
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight">
             <span className="text-neon-cyan neon-glow animate-glow block">
