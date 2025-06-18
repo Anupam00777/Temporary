@@ -4,9 +4,11 @@ import { Suspense, useEffect, useState } from "react";
 import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader.js";
 import { MTLLoader } from "three/examples/jsm/loaders/MTLLoader.js";
 import * as THREE from "three";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 function Model() {
   const [model, setModel] = useState<THREE.Group | null>(null);
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     const mtlLoader = new MTLLoader();
@@ -27,7 +29,7 @@ function Model() {
     <Float speed={1.5} rotationIntensity={0.5} floatIntensity={0.5}>
       <primitive
         object={model}
-        scale={0.3}
+        scale={isMobile ? 0.2 : 0.3}
         position={[0, 0, 0]}
         rotation={[0, Math.PI / 4, 0]}
       />
@@ -36,10 +38,15 @@ function Model() {
 }
 
 function GamingScene() {
+  const isMobile = useIsMobile();
+
   return (
     <div className="h-[50vh] w-full">
       <Canvas
-        camera={{ position: [0, 0, 5], fov: 45 }}
+        camera={{
+          position: [0, 0, isMobile ? 4 : 5],
+          fov: isMobile ? 35 : 45,
+        }}
         style={{ background: "transparent" }}
       >
         <Suspense fallback={null}>
